@@ -1,8 +1,5 @@
-require 'pry'
+class DrawingUtensil
 
-input_file = ARGV.pop
-
-class Draw
   SEARCH_CHAR = '#'
   LINE_CHAR = '*'
 
@@ -16,18 +13,17 @@ class Draw
   def print_line(line)
     index_present = check_line_for_indexes(line)
     if outside
-      puts line
+      # no changes
     elsif inside and index_present
-      puts line
+      # no changes
     elsif inside and not index_present
       line[first_index] = LINE_CHAR
-      puts line
     elsif bottom
       num_chars = last_index - first_index
       line[first_index..last_index - 1] = LINE_CHAR * num_chars
       reset_indexes
-      puts line
     end
+    puts line
   end
 
   private
@@ -64,8 +60,11 @@ class Draw
 
 end
 
-pencil = Draw.new
+
+pencil = DrawingUtensil.new
+input_file = ARGV.pop
 
 File.open(input_file).each do |line|
   pencil.print_line(line)
 end
+
