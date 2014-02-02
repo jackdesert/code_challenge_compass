@@ -1,4 +1,5 @@
 *.swp
 input.txt
+output.txt
 expected.txt
 

@@ -14,15 +14,18 @@ class Draw
   end
 
   def print_line(line)
-    check_line_for_indexes(line)
+    index_present = check_line_for_indexes(line)
     if outside
       puts line
-    elsif inside
+    elsif inside and index_present
+      puts line
+    elsif inside and not index_present
       line[first_index] = LINE_CHAR
       puts line
     elsif bottom
       num_chars = last_index - first_index
-      line[first_index..last_index] = LINE_CHAR * num_chars
+      line[first_index..last_index - 1] = LINE_CHAR * num_chars
+      reset_indexes
       puts line
     end
   end
@@ -32,6 +35,7 @@ class Draw
   def check_line_for_indexes(line)
     index = line.index SEARCH_CHAR
     update_indexes(index) if index
+    index
   end
 
   def update_indexes(index)
@@ -39,9 +43,11 @@ class Draw
       @first_index = index
     elsif inside
       @last_index = index
-    elsif bottom
-      @first_index = @last_index = nil
     end
+  end
+
+  def reset_indexes
+    @first_index = @last_index = nil
   end
 
   def outside
