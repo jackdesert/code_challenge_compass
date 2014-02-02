@@ -1,0 +1,7 @@
+Code Challenge Compass
+----------------------
+
+This approach will work with any length of file, as it reads in a single line at a time.
+
+Note that 'pather' is a simple bash script that calls 'run.rb'.
+
